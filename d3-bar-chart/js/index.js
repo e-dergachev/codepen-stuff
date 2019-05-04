@@ -11,10 +11,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     const json = JSON.parse(localStorage.getItem('data-json'))
     dataset = json.data
   }
+  let formattedDate = []
+  dataset.forEach(date => {
+      switch(date[0].slice(5)) {
+          case "01-01":
+              formattedDate.push(date[0].slice(0, 4) + " Q1")
+              break
+          case "04-01":
+              formattedDate.push(date[0].slice(0, 4) + " Q2")
+              break
+          case "07-01":
+              formattedDate.push(date[0].slice(0, 4) + " Q3")
+              break
+          case "10-01":
+              formattedDate.push(date[0].slice(0, 4) + " Q4")
+              break
+      }
+  })
   const svg = d3.select("#bar-chart")
                 .append("svg")
                 .attr("width", 900)
                 .attr("height", 600)
+  const tooltip = d3.select("#bar-chart")
+                    .append("div")
+                    .attr("id", "tooltip")  
   svg.selectAll("rect")
        .data(dataset)
        .enter()
@@ -27,6 +47,13 @@ document.addEventListener("DOMContentLoaded", async () => {
        .attr("class", "bar")
        .attr('data-date', (d, i) => d[0]) //needs this stuff for testing
        .attr('data-gdp', (d, i) => d[1])
-       .append("title") //this way it doesn't pass need a proper tooltip
-       .text(d => d)
+       .on("mouseover", (d, i) => {
+        tooltip.style("display", "flex")
+               .html(formattedDate[i] + '<br>' + '$' + d[1] + ' bln')
+               .attr('data-date', d[0])
+               .style('left', (i * 3) + 30 + 'px')
+               .style('top', 500 + 'px')
+        })
+       .on("mouseout", (d, i) => tooltip.style("display", "none"))
+
 })

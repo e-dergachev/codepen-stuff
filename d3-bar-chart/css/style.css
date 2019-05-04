@@ -5,5 +5,18 @@
 }
 
 .bar:hover {
-    fill: crimson;
-  }
+  fill: #808080;
+}
+
+#tooltip {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  width: 120px;
+  height: 50px;
+  background: #ddd;
+  opacity: 0.8;
+  border: 1px solid;
+}
