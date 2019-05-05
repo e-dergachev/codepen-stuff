@@ -28,10 +28,25 @@ document.addEventListener("DOMContentLoaded", async () => {
               break
       }
   })
-  const height = 550
+  const height = 550, width = 900
+  const maxGDP = d3.max(dataset, d => d[1])
+  const minYear = parseInt(dataset[0][0].slice(0, 4)), 
+        maxYear = parseInt(dataset[dataset.length - 1][0].slice(0, 4))
+  const yScale = d3.scaleLinear()
+                   .domain([0, maxGDP])
+                   .range([0, height])
+  const yAxisScale = d3.scaleLinear() //need it to invert the axis
+                       .domain([0, maxGDP])
+                       .range([height, 0])
+  const xScale = d3.scaleLinear()
+                   .domain([minYear, maxYear])
+                   .range([0, dataset.length * 3 - 1])  
+  const yAxis = d3.axisLeft(yAxisScale)
+  const xAxis = d3.axisBottom(xScale)
+                  .tickFormat(d3.format("d")) //to remove comma delimeter for thousands
   const svg = d3.select("#bar-chart")
                 .append("svg")
-                .attr("width", 900)
+                .attr("width", width)
                 .attr("height", height)
   const tooltip = d3.select("#bar-chart")
                     .append("div")
@@ -41,9 +56,9 @@ document.addEventListener("DOMContentLoaded", async () => {
        .enter()
        .append("rect")
        .attr("x", (d, i) => i * 3)
-       .attr("y", (d, i) => height - 0.03 * d[1]) //to invert y = heightOfSVG - heightOfBar
+       .attr("y", (d, i) => height - yScale(d[1])) //to invert y = heightOfSVG - heightOfBar
        .attr("width", 2)
-       .attr("height", (d, i) => 0.03 * d[1])
+       .attr("height", (d, i) => yScale(d[1]))
        .attr("fill", "navy")
        .attr("class", "bar")
        .attr('data-date', (d, i) => d[0]) //needs this stuff for testing
@@ -56,5 +71,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                .style('top', height - 100 + 'px')
         })
        .on("mouseout", (d, i) => tooltip.style("display", "none"))
-
+  svg.append("g")
+     .attr("transform", "translate(40, 0)")
+     .call(yAxis)
+     .attr('id', 'y-axis')
+  svg.append("g")
+     .attr("transform", "translate(0, 500)")
+     .call(xAxis)
+     .attr('id', 'x-axis')
 })
