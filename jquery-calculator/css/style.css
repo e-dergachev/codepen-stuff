@@ -1,0 +1,92 @@
+body {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  font-family: "Orbitron";
+}
+
+h5 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;   
+  font-weight: bold;
+  font-size: 180%;
+}
+
+#box { /*small entry*/
+  font-family: "Share Tech Mono";
+  text-align:right;
+  padding-right: 5px;
+  margin-bottom: 0px;
+}
+
+#box-big { /*big entry*/
+  font-family: "Share Tech Mono";
+  font-size: 220%;
+  text-align:right;
+  padding-right: 3px;
+  margin-top: -6px;
+}
+
+#zero {
+  width: 117px;
+}
+
+#dot {
+  margin-left: 1px;
+}
+
+#equal {
+  height: 101px; 
+  margin-left: 4px; 
+  margin-top: -54px; 
+  position: absolute;
+}
+
+button, button:focus {
+  color: white;
+  font-weight: 555;
+  letter-spacing: 1px;
+  background-color: #505050;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  width: 55px;
+  height: 47px;
+  margin: 0px 3px 7px 0px;
+  text-align: center;
+  box-shadow: 0px 3px 0px 0px #202020
+}
+
+button:active {
+  transform: translate(0px, 3px);
+  box-shadow: none;
+  outline: none;
+}
+
+.calc {
+  width: 280px;
+  height: 435px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #202020;
+  border-radius: 11px;
+}
+
+.digit-box {
+    width: 242px;
+    height: 65px;
+    border: 1px solid #202020;
+    margin-left: auto;
+    margin-right: auto;
+    background:#b0b0b0;
+    margin-bottom: 9px;
+    border-radius: 7px;
+}
+
+.button-box {
+  width: 246px;
+  height: auto;
+  position: absolute;
+  display: inline-block;
+  margin-left: 18px;  
+}
