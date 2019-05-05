@@ -28,10 +28,11 @@ document.addEventListener("DOMContentLoaded", async () => {
               break
       }
   })
+  const height = 550
   const svg = d3.select("#bar-chart")
                 .append("svg")
                 .attr("width", 900)
-                .attr("height", 600)
+                .attr("height", height)
   const tooltip = d3.select("#bar-chart")
                     .append("div")
                     .attr("id", "tooltip")  
@@ -40,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
        .enter()
        .append("rect")
        .attr("x", (d, i) => i * 3)
-       .attr("y", (d, i) => 600 - 0.03 * d[1]) //to invert y = heightOfSVG - heightOfBar
+       .attr("y", (d, i) => height - 0.03 * d[1]) //to invert y = heightOfSVG - heightOfBar
        .attr("width", 2)
        .attr("height", (d, i) => 0.03 * d[1])
        .attr("fill", "navy")
@@ -52,7 +53,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                .html(formattedDate[i] + '<br>' + '$' + d[1] + ' bln')
                .attr('data-date', d[0])
                .style('left', (i * 3) + 30 + 'px')
-               .style('top', 500 + 'px')
+               .style('top', height - 100 + 'px')
         })
        .on("mouseout", (d, i) => tooltip.style("display", "none"))
 

@@ -1,7 +1,12 @@
+#title {
+  height: 50px;
+}
+
 #bar-chart {
   width: 900px;
   height: 600px;
   border: 1px solid;
+  text-align: center;
 }
 
 .bar:hover {
@@ -19,4 +24,8 @@
   background: #ddd;
   opacity: 0.8;
   border: 1px solid;
+}
+
+#title {
+  display: inline-block;
 }
