@@ -1,14 +1,14 @@
 //plain javascript async fetching, no jquery, could fetch with d3 itself i guess
 document.addEventListener("DOMContentLoaded", async () => {
   let dataset
-  if (localStorage.getItem('data-json') === null) { //using localstorage to save fetching requests
+  if (localStorage.getItem('data-d3-bar-chart-gdp') === null) { //using localstorage to save fetching requests
     const response = await fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json')
     const json = await response.json()
-    localStorage.setItem('data-json', JSON.stringify(json))
+    localStorage.setItem('data-d3-bar-chart-gdp', JSON.stringify(json))
     dataset = json.data
   }
   else {
-    const json = JSON.parse(localStorage.getItem('data-json'))
+    const json = JSON.parse(localStorage.getItem('data-d3-bar-chart-gdp'))
     dataset = json.data
   }
   let formattedDate = []

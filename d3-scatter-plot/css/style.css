@@ -1,0 +1,24 @@
+h1 {
+  font-size: 120%;
+}
+
+h2 {
+  font-size: 100%;
+}
+
+body {
+  margin: 20px 0 20px 0;
+}
+
+#scatter-plot {
+  width: 900px;
+  height: 600px;
+  margin: auto;
+  border: 1px solid;
+}
+
+#title {
+  height: 50px;
+  text-align: center;
+  border-bottom: 1px solid;
+}
