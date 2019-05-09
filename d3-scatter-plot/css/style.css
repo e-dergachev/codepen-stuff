@@ -4,6 +4,7 @@ h1 {
 
 h2 {
   font-size: 100%;
+  margin-top: -7px;
 }
 
 body {
@@ -14,16 +15,27 @@ body {
   width: 900px;
   height: 600px;
   margin: auto;
-  border: 1px solid;
 }
 
 #title {
   height: 50px;
   text-align: center;
-  border-bottom: 1px solid;
 }
 
 .dot {
   opacity: 0.8;
   stroke: black;
+}
+
+#tooltip {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  width: 180px;
+  background: #ddd;
+  opacity: 0.8;
+  border: 1px solid;
+  font-size: 80%;
 }
