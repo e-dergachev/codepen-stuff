@@ -1,0 +1,25 @@
+h1 {
+  font-size: 120%;
+}
+
+h2 {
+  font-size: 100%;
+  margin-top: -7px;
+}
+
+body {
+  margin: 20px 0 20px 0;
+}
+
+#heat-map {
+  width: 1200px;
+  height: 600px;
+  margin: auto;
+  border: 1px solid;
+}
+
+#title {
+  height: 50px;
+  text-align: center;
+  border-bottom: 1px solid;
+}
