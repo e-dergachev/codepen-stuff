@@ -22,3 +22,16 @@ body {
   height: 50px;
   text-align: center;
 }
+
+#tooltip {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  width: 120px;
+  background: #ddd;
+  opacity: 0.8;
+  border: 1px solid;
+  font-size: 90%;
+}

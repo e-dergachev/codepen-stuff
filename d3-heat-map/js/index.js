@@ -39,6 +39,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 .append("svg")
                 .attr("width", width)
                 .attr("height", height)
+  const tooltip = d3.select("#heat-map")
+                    .append("div")
+                    .attr("id", "tooltip")    
   svg.append("g")
      .attr("transform", "translate(" + xPadding + "," + (height - yPadding) + ")")
      .call(xAxis)
@@ -61,4 +64,13 @@ document.addEventListener("DOMContentLoaded", async () => {
      .attr("data-month", d => d.month - 1)
      .attr("data-year", d => d.year)
      .attr("data-temp", d => d.variance + 8.66)
+     .on("mouseover", d => {
+        tooltip.style("display", "flex")
+               .html(d.year + " - " + monthNames[d.month - 1] + "<br>" + (d.variance + 8.66).toFixed(1) + 
+                    "℃<br>" + d.variance.toFixed(1) + "℃")
+               .attr('data-year', d.year)
+               .style('left', d3.event.pageX + 15 + 'px')
+               .style('top', d3.event.pageY + 0 + 'px')
+        })       
+     .on("mouseout", d => tooltip.style("display", "none"))
 })
