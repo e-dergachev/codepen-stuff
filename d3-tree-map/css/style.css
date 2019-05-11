@@ -1,0 +1,36 @@
+h1 {
+  font-size: 120%;
+}
+
+h2 {
+  font-size: 100%;
+  margin-top: -7px;
+}
+
+body {
+  margin: 20px 0 20px 0;
+}
+
+#tree-map {
+  width: 1000px;
+  height: 900px;
+  margin: auto;
+  border: 1px solid;
+}
+
+#title {
+  height: 50px;
+  text-align: center;
+  border-bottom: 1px solid;
+}
+
+#tooltip {
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  width: 150px;
+  background: #ddd;
+  border: 1px solid;
+  font-size: 100%;
+}
