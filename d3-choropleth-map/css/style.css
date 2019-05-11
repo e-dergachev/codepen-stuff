@@ -1,0 +1,34 @@
+h1 {
+  font-size: 120%;
+}
+
+h2 {
+  font-size: 100%;
+  margin-top: -7px;
+}
+
+body {
+  margin: 20px 0 20px 0;
+}
+
+#choropleth-map {
+  width: 970px;
+  height: 800px;
+  margin: auto;
+}
+
+#title {
+  height: 50px;
+  text-align: center;
+}
+
+#tooltip {
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  width: 220px;
+  background: #ddd;
+  border: 1px solid;
+  font-size: 100%;
+}
