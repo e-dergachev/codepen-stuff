@@ -17,7 +17,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
   const perCent = fullValue/100
+  const categories = []
+  dataset.children.forEach(el => categories.push(el.name))
+  console.log(categories)
   const colors = {"Product Design":"#33cc33", "Tabletop Games":"#ff00ff", "Gaming Hardware":"#3366ff", "Video Games":"#33cccc", "Sound":"#ffff00", "Television":"#ff5050", "Narrative Film":"#993300", "Web":"#003399", "Hardware":"#339966", "Games":"#666633", "3D Printing":"#993366", "Technology":"#6600cc", "Wearables":"#ff9933", "Sculpture":"#0099ff", "Apparel":"#9966ff", "Food":"#ff3399", "Art":"#99ff33", "Gadgets":"#00ff99", "Drinks":"#ccffcc"} //it's just faster
+  const legendColors = ["#33cc33", "#ff00ff", "#3366ff", "#33cccc", "#ffff00", "#ff5050", "#993300", "#003399", "#339966", "#666633", "#993366", "#6600cc", "#ff9933", "#0099ff", "#9966ff", "#ff3399", "#99ff33", "#00ff99", "#ccffcc"]
   const svg = d3.select("#tree-map")
                 .append("svg")
                 .attr("width", width)
@@ -62,5 +66,55 @@ document.addEventListener("DOMContentLoaded", async () => {
      .text(d => (d.value/perCent).toFixed(1) + "%")
      .attr("class", "leaf-text")
      .attr("fill", "white")
-
+  const legend = svg.append("g")
+                    .attr("id", "legend")
+  let j = 0, k = 0 //need it to place the legend's boxes properly
+  legend.append("g")
+        .selectAll("dots")
+        .data(legendColors)
+        .enter()
+        .append("rect")
+        .attr("class", "legend-item")
+        .attr("x", (d, i) => {
+          if (i % 5 === 0 && i !== 0) {
+            j++
+          }
+          const xCoord = 15 + j*160
+          return xCoord    
+        })
+        .attr("y", (d, i) => {
+          if (i % 5 === 0) {
+            k = 0
+          }
+          const yCoord = 955 + k*25
+          k++
+          return yCoord
+        })
+        .attr("width", 20)
+        .attr("height", 20)
+        .style("fill", d => d)
+        .style("stroke", "black")
+  let l = 0, m = 0 //need it to place the legend's text properly  
+  legend.append("g")
+        .selectAll("text")
+        .data(categories)
+        .enter()
+        .append("text")
+        .attr("x", (d, i) => {
+          if (i % 5 === 0 && i !== 0) {
+            l++
+          }
+          const xCoord = 40 + l*160
+          return xCoord    
+        })
+        .attr("y", (d, i) => {
+          if (i % 5 === 0) {
+            m = 0
+          }
+          const yCoord = 971 + m*25
+          m++
+          return yCoord
+        })
+        .text(d => d)
+        .attr("font-size", "15px")
 })
