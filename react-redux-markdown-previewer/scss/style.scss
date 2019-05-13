@@ -1,0 +1,118 @@
+$main-color: hsl(120, 100%, 85%);
+$cap-color: hsl(120, 60%, 70%);
+$cap-font: Indie Flower;
+$cap-height: 25px;
+$code-color: hsl(110, 100%, 90%);
+$medium-screen: "(max-width: 799px)";
+$small-screen: "(max-width: 499px)";
+
+body {
+  padding: 15px 0 15px 0;
+  background-color: hsl(105, 100%, 80%);
+}
+
+#editor {
+  resize: vertical;
+  width: 640px;
+  @media #{$medium-screen} {
+    width: 470px;
+  }
+  @media #{$small-screen} {
+    width: 280px;
+  }  
+  height: 250px;
+  border: 1px solid;
+  padding-left: 5px;
+  display: block;
+  margin: auto auto 5px auto;
+  background-color: $main-color;
+}
+
+#editors-cap {
+  width: 642px;
+  @media #{$medium-screen} {
+    width: 472px;
+  }
+  @media #{$small-screen} {
+    width: 282px;
+  }    
+  height: $cap-height;
+  line-height: $cap-height;
+  border: 1px solid;
+  border-bottom: 0;
+  margin: auto;
+  background-color: $cap-color;
+  padding-left: 5px;
+  font-family: $cap-font;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+#preview {
+  img {
+    max-width: 650px;
+  }
+  width: 740px;
+  @media #{$medium-screen} {
+    width: 480px;
+    img {
+      max-width: 400px;
+    }
+  }
+  @media #{$small-screen} {
+    width: 283px;
+    img {
+      max-width: 270px;
+    }    
+  }    
+  border: 1px solid;
+  padding: 0 10px 0 10px;
+  margin: auto;
+  background-color: $main-color;
+  word-wrap: break-word;
+}
+
+#preview-cap {
+  width: 755px;
+  @media #{$medium-screen} {
+    width: 495px;
+  }
+  @media #{$small-screen} {
+    width: 298px;
+  }  
+  height: $cap-height;
+  line-height: $cap-height;
+  border: 1px solid;
+  border-bottom: 0;
+  margin: auto;
+  background-color: $cap-color;
+  padding-left: 5px;
+  font-family: $cap-font;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.icons {
+  padding: 2px 4px 0 0;
+}
+
+h1 {
+  border-bottom: 1px solid;  
+}
+
+code {
+  background-color: $code-color;
+  padding: 2px 3px 2px 3px;
+}
+
+pre {
+ background-color: $code-color;
+ padding: 3px 1px 5px 5px;
+ white-space: pre-wrap;
+}
+
+blockquote {
+  border-left: 2px solid;
+  padding-left: 5px;
+  margin-left: 26px;
+}
