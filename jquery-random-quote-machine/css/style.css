@@ -1,0 +1,24 @@
+h2 {
+  font-family: Freckle Face;
+  font-size: 250%;
+}
+
+p {
+  font-size: 120%;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #696969 !important;
+  border-color: #696969 !important;
+  box-shadow: none !important;
+  font-size: 130%;
+  cursor: pointer;
+}
+
+#quoteBox {
+  margin: 50px;
+}
+
+body {
+    padding-bottom: 70px;
+}
