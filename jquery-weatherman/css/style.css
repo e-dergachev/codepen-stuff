@@ -1,0 +1,23 @@
+body {
+  background-color: #101010;
+  color: #bebebe;
+  padding-bottom: 50px;
+}
+
+h2 {
+  font-family: Freckle Face;
+  font-size: 250%;
+}
+
+#temperature {
+  cursor: pointer;
+  font-size: 150%;
+} 
+
+#weather {
+  font-size: 150%;
+}
+
+#location {
+  font-size: 150%;
+}
