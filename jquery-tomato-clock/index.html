@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Tomato Clock</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <link rel='stylesheet' href='https://rawgit.com/thecreation/jquery-asPieProgress/master/dist/css/asPieProgress.css'>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Supermercado+One|Ubuntu+Mono" rel="stylesheet">
+</head>
+<body>
+  <h2>Tomato Clock</h2>
+  <div class="labels">
+    <span>Break:</span>
+    <button id="reset"><i class="fa fa-refresh"></i></button>
+    <span>Session:</span>
+  </div>
+  <div class="button-box">
+    <i id="break-minus" class="fa fa-minus-square-o"></i>
+    <span id="break-len"></span>
+    <i id="break-plus" class="fa fa-plus-square-o"></i>
+    <i id="session-minus" class="fa fa-minus-square-o"></i>
+    <span id="session-len"></span>
+    <i id="session-plus" class="fa fa-plus-square-o"></i>
+  </div>
+  <div class="time-box">
+    <div class="pie_progress--slow" data-barcolor="#777777" data-trackcolor="#d0d0d0" data-barsize="16" role="progressbar">
+      <div class="v-centered">
+        <p id="clock"></p>
+        <p id="session"></p>
+      </div>
+    </div>    
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <script src='https://rawgit.com/thecreation/jquery-asPieProgress/master/dist/jquery-asPieProgress.js'></script>
+  <script  src="js/index.js"></script>
+</body>
+</html>

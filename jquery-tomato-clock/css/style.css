@@ -1,0 +1,95 @@
+body {
+  font-family: "Supermercado One";
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+h2 {
+  text-align:center;
+  font-size: 200%;
+}
+
+button {
+  margin-left: 15px;
+  margin-right: 15px;
+  background-color: #d0d0d0;
+  border-radius: 5px;
+  border: 1px solid;
+  outline: none;
+  width: 40px;
+  height: 35px;
+  text-align: center;
+}
+
+.labels {
+  font-size: 120%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 220px;
+  margin-bottom: -8px;
+  text-align:center;
+  padding-left: 15px;
+}
+
+#break-len, #session-len {
+  margin: 0px 2px 0px 2px;
+  font-family: "Ubuntu Mono";
+  font-size: 140%;
+  white-space: pre;
+}
+
+#break-minus, #break-plus, #session-minus, #session-plus {
+  cursor: pointer;
+  font-size: 120%;
+} 
+
+#break-plus {
+  margin-right: 80px;
+}
+
+.button-box {
+  margin-left: auto;
+  margin-right: auto;
+  width: 220px;
+  height: auto; 
+  text-align:center;
+  margin-bottom: 10px;
+  user-select:none;
+}
+
+.time-box {
+  margin-left: auto;
+  margin-right: auto;
+  width: 210px;
+  height: 210px;
+  cursor: pointer;
+  border: 1px solid;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 0 0 1px;
+}
+
+#clock {
+  font-weight: bold;
+  font-size: 200%;
+}
+
+#session {
+  margin-top: -20px;
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.v-centered { /* not to use on separate <p></p>*/
+
+position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+transform: translateY(-50%);
+}
+
+.pie_progress {
+  width: 200px;
+  margin: 5px 5px 5px 5px;
+}
