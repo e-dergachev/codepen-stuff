@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Survey</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+</head>
+<body>
+  <!--Some styling experiments, a few of them.-->
+  <div id="survey-box">
+    <h1 id="title">Survey Title</h1>
+    <p id="description">A short description.</p>
+    <form id="survey-form">
+      <div id="name-box">
+        <label id="name-label" for="name">Name: </label>
+        <input name="name" id="name" type="text" required placeholder="Enter your name" maxlength="100">
+      </div>
+      <div id="email-box">
+        <label id="email-label" for="email">E-mail: </label>
+        <input name= "email" id="email" type="email" required placeholder="Enter your e-mail" maxlength="100">
+      </div>
+      <div id="age-box">
+        <label id="number-label" for="name">Enter your age: </label>
+        <input name="number" id="number" type="number" min="13" max="125" placeholder="Age">
+      </div>
+      <div id="dropdown-box">
+        <label for="dropdown">Choose your option:</label>
+        <span id="grr"><select id="dropdown" name="dropdown"></span>
+          <option disabled selected value="">Select an option</option>
+          <option value="firstOption">First option</option>
+          <option value="secondOption">Second option</option>
+          <option value="thirdOption">Third option</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div id="radio-box">
+        <fieldset>
+          <legend>Choose one of these three items:</legend>
+          <ul class="lists">
+            <li>
+              <input id="radio1" type="radio" name="radio-items" value="radio1">
+              <label for="radio1">Choice one</label>
+            </li>
+            <li>
+             <input id="radio2" type="radio" name="radio-items" value="radio2">
+             <label for="radio2">Choice two</label>
+           </li>
+           <li>
+              <input id="radio3" type="radio" name="radio-items" value="radio3">
+              <label for="radio3">Choice three</label>
+            </li>
+          </ul>    
+        </fieldset>
+      </div>
+      <div id="checkbox-box">
+        <fieldset>
+          <legend>Choose one or more of these four items:</legend>
+          <ul class="lists">
+            <li>
+              <input id="checkbox1" type="checkbox" name="checkbox-items" value="checkbox1"> 
+              <label for="checkbox1">Choice one</label>
+            </li>
+            <li>
+              <input id="checkbox2" type="checkbox" name="checkbox-items" value="checkbox2"> 
+              <label for="checkbox2">Choice two</label>
+            </li>
+            <li>
+              <input id="checkbox3" type="checkbox" name="checkbox-items" value="checkbox3">
+              <label for="checkbox3">Choice three</label>
+            </li>
+            <li>
+              <input id="checkbox4" type="checkbox" name="checkbox-items" value="checkbox3"> 
+              <label for="checkbox4">Choice four</label>
+            </li>
+          </ul>
+        </fieldset>
+      </div>
+      <div id="text-label-box">
+        <label for="comments" id="label-comments">Do you have any comments?</label>
+      </div>
+      <div id="text-box">
+        <textarea name="comments" id="comments" placeholder="Leave your comments." maxlength="2000"></textarea>
+      </div>
+      <div id="button-box">
+        <input type="submit" id="submit" value="Submit">
+      </div
+    </form>
+  </div>
+  <script  src="js/index.js"></script>
+</body>
+</html>

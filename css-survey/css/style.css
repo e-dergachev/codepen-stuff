@@ -1,0 +1,204 @@
+body {
+  background: repeating-linear-gradient(
+      45deg,
+      yellow 0px,
+      yellow 40px,
+      black 40px,
+      black 80px
+    );
+  background-attachment: fixed;
+  padding: 20px 0 20px 0;
+}
+
+fieldset {
+  border: none;
+}
+
+.lists {
+  list-style: none;
+  margin: 0 0 5px 0;
+}
+
+#title {
+  text-align: center;
+}
+
+#description {
+  margin-top: -10px;
+  text-align: center;
+}
+
+#survey-box {
+  background-color: white;
+  width: 294px;
+  margin: auto;
+}
+
+#survey-form {
+  margin: 35px auto 0 auto;  
+}
+
+#comments {
+  width: 90%;
+  height: 60px;
+}
+
+#name, #email, #number {
+  text-indent: 4px;
+}
+
+#name {
+  margin-left: 9px;
+}
+
+#email, #number, #dropdown {
+  margin-left: 5px;
+}
+
+
+
+input:-webkit-autofill {
+    transition-delay: 1000000s; /* Some magic to stop yellow background on autofill */
+}
+
+#survey-box, #comments, #name, #email, #number, #dropdown {
+  border: 1px solid;
+  border-radius: 7px;
+}
+
+#comments:focus, #name:focus, #email:focus, #number:focus, #dropdown:focus, #comments:not(:placeholder-shown), #name:not(:placeholder-shown), #email:not(:placeholder-shown), #number:not(:placeholder-shown) {
+  outline: none;
+  box-shadow: 0 0 0 3px #ffcc00;
+}
+
+input[type="radio"]:checked::after {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  content: '';
+  border: 3px solid #ffcc00 !important;
+  box-sizing: border-box;
+  border-radius: 100%;
+}
+
+input[type="checkbox"]:checked::after {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  content: '';
+  border: 3px solid #ffcc00 !important;
+  box-sizing: border-box;
+}
+
+#name-box {
+  margin: 0 auto 15px auto;
+  padding-left: 2px;
+  width: 280px;
+}
+
+#email-box {
+  width: 280px;
+  margin: 0 auto 15px auto;
+  padding-left: 2px;
+}
+
+#age-box {
+  width: 280px;
+  margin: 0 auto 20px auto;
+  padding-left: 2px;
+}
+
+#dropdown-box {
+  width: 280px;
+  margin: 0 auto 20px auto;
+  padding-left: 2px;
+}
+
+#radio-box {
+  margin: auto;
+  width: 280px;
+}
+
+#checkbox-box {
+  margin: auto;
+  width: 280px;
+}
+
+#text-label-box {
+  margin: auto;
+  padding: 0 0 5px 0;
+  width: 92%;
+}
+
+#text-box {
+  text-align: center;
+}
+
+#button-box {
+  text-align: center;
+  padding: 12px 0 20px 0;  
+}
+
+#submit {
+  background: repeating-linear-gradient(
+      90deg,
+      hsl(60, 100%, 50%) 0px,
+      hsl(60, 100%, 50%) 14px,
+      hsl(0, 0%, 0%) 14px,
+      hsl(0, 0%, 0%) 28px
+    );
+  text-shadow:
+    -1px -1px 0 white,
+    1px -1px 0 white,
+    -1px 1px 0 white,
+    1px 1px 0 white;
+  border: 1px solid;
+  border-radius: 7px;
+  font-size: 150%;
+  font-family: Fredoka One;
+}
+
+#submit:active, #submit:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #ffcc00;  
+}
+
+@media (min-width: 500px) {
+  body {
+    padding: 30px 0 30px 0;
+  }
+  #survey-box { 
+      width: 450px; 
+  }
+  #comments {
+    width: 70%;
+    height: 80px;
+  } 
+  #text-label-box {
+    width: 71%;    
+  }
+  #name-box, #email-box, #age-box, #dropdown-box {
+    padding-left: 0px;  
+  }
+}
+
+@media (min-width: 1000px) {
+  body {
+    padding: 40px 0 40px 0;
+  }  
+  #survey-box { 
+      width: 900px; 
+  }
+  #comments {
+      width: 50%;
+      height: 100px;
+  }
+  #text-label-box {
+      width: 50.5%;    
+  }
+  #name-box, #email-box, #age-box, #dropdown-box {
+    padding-left: 0px;  
+  }  
+}
