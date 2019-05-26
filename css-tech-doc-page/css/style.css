@@ -1,0 +1,113 @@
+#navbar {
+  height: 100%;
+  position: fixed;
+  width: 250px;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  border-right: solid 2px hsl(0, 0%, 60%);
+  overflow-y: auto;
+}
+
+@media (max-width: 1000px) {
+  #navbar {
+    width: 150px;
+  }
+}
+
+@media (max-width: 550px) {
+  #navbar {
+    position: relative;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-height: 185px;
+    border-right: 0;
+    border-bottom: solid 2px hsl(0, 0%, 60%);
+  }
+}
+
+#main-doc {
+  margin-left: 250px;
+  padding: 15px 20px 40px 50px;  
+}
+
+@media (max-width: 1000px) { /*higher above lower*/
+  #main-doc {
+    margin-left: 150px;
+    padding: 15px 15px 15px 25px;      
+  }
+}
+
+@media (max-width: 550px) {
+  #main-doc {
+    margin-left: 0;
+    padding: 15px 15px 15px 25px;
+  }
+}
+
+#nav-header {
+  padding-left: 50px;
+  font-family: "Permanent Marker";
+  font-size: 125%;
+  height: 50px;
+  line-height: 50px;
+}
+
+#chapter-1, #chapter-2, #chapter-3, #chapter-4, #chapter-5 {
+  border-top: solid 2px hsl(0, 0%, 60%);
+  padding-left: 50px;
+}
+
+@media (max-width: 1000px) {
+  #nav-header, #chapter-1, #chapter-2, #chapter-3, #chapter-4, #chapter-5 {
+    padding-left: 10px;
+  }
+}
+
+a:link, a:visited {
+  color: hsl(0, 0%, 30%);
+}
+
+a:hover, a:active {
+  color: hsl(0, 0%, 60%);  
+}
+
+.text-header {
+  font-weight: bold;
+  font-size: 125%;
+  padding: 10px 0 10px 0;
+}
+
+code {
+  display: inline-block;
+  color: hsl(0, 0%, 30%);
+  background-color: hsl(0, 0%, 90%);
+  margin: 0 0 12px 30px;
+}
+
+ul { /*custom styling*/
+  list-style: none;
+  padding-left: 30px;
+}
+li {
+  padding: 5px 0 0 1.3em;
+}
+li:before {
+  content: "\f00c";
+  font-family: FontAwesome;
+  display: inline-block;
+  margin: 0 5px 0 -1.3em;
+  width: 1.3em;
+}
+
+@media (max-width: 1000px) {
+  code {
+    margin-left: 0;
+  }
+  
+  ul {
+    padding-left: 0;
+  }
+}
