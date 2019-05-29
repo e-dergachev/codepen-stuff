@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Product Landing Page</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css'>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="header">
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top" id="nav-bar"> <!-- Some magic I barely understand -->
+      <a class="navbar-brand" href="#"><img src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png" width="40px" height="40px" id="header-img"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="Navbar">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#how-it-works">How it works</a></li>
+          <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+        </ul>
+      </div>    
+    </nav>
+  </header>
+  <div class="container-fluid" id="main-container">
+    <div class="row">
+      <div class="col-12">
+        <h1>Very amazing stuff!</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+        <form id="form" action="https://www.freecodecamp.com/email-submit">
+          <div>
+            <input name= "email" id="email" type="email" placeholder="Enter your e-mail" maxlength="100">
+          </div>
+          <div id="button-box">
+            <input type="submit" id="submit" class="my-button" value="Get started">
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+    <div class="row" id="features">
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-1 arrows">
+        <i class="fa fa-3x fa-angle-double-right"></i>
+      </div>
+      <div class="col-sm-6">
+        <h3>Lorem ipsum</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+      </div>
+      <div class="col-sm-2">
+      </div>      
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-1 arrows">
+        <i class="fa fa-3x fa-angle-double-right"></i>
+      </div>
+      <div class="col-sm-6">
+        <h3>Lorem ipsum</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+      </div>
+      <div class="col-sm-2">
+      </div>      
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-1 arrows">
+        <i class="fa fa-3x fa-angle-double-right"></i>
+      </div>
+      <div class="col-sm-6">
+        <h3>Lorem ipsum</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+      </div>
+      <div class="col-sm-2">
+      </div>      
+    </div>    
+  </div>
+  <div class="container"> <!-- Not fluid! -->
+    <div class="row" id="how-it-works">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4" id="video-box">
+        <iframe width="500" height="265" id="video" src="https://www.youtube.com/embed/oHg5SJYRHA0?rel=0" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="col-md-4">
+      </div>      
+    </div>
+    <div class="row" id="pricing">
+      <div class="col-md-4">
+        <div class="product-box" id="product-box1">
+          <div class="option-title">
+            Option One            
+          </div>
+          <div class="center-me">
+            <h2>$$</h2>
+            <ul class="lists">
+              <li>Lorem ipsum.</li>
+              <li>Lorem ipsum.</li>
+              <li>Lorem ipsum dolor.</li>
+              <li>Lorem ipsum.</li>
+            </ul>
+            <button class="my-button">Select</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="product-box" id="product-box2">
+          <div class="option-title">
+            Option Two
+          </div>
+          <div class="center-me">          
+            <h2>$$$</h2>
+            <ul class="lists">
+              <li>Lorem ipsum.</li>
+              <li>Lorem ipsum.</li>
+              <li>Lorem ipsum dolor.</li>
+              <li>Lorem ipsum.</li>
+            </ul>
+            <button class="my-button">Select</button>
+          </div>    
+        </div>        
+      </div>
+      <div class="col-md-4">
+        <div class="product-box" id="product-box3">
+          <div class="option-title">
+            Option Three
+          </div>
+          <div class="center-me">              
+            <h2>$$$$</h2>      
+            <ul class="lists">
+              <li>Lorem ipsum.</li>
+              <li>Lorem ipsum.</li>
+              <li>Lorem ipsum dolor.</li>
+              <li>Lorem ipsum.</li>
+            </ul>
+            <button class="my-button">Select</button>
+          </div>            
+        </div>        
+      </div>
+    </div>
+  </div>
+  <footer id="foo">
+    (c) 2019, Company Name
+  </footer>
+</body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
+</body>
+</html>

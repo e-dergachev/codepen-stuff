@@ -1,0 +1,154 @@
+body {
+  padding: 40px 0 20px 0;  
+}
+
+.navbar-dark {
+  font-weight: bold;
+  font-family: Serif;
+  font-size: 125%;
+  background-color: #696969;
+  /*problems with changing its height, might need to ask if I ever do it in a serious project*/
+}
+
+#main-container {
+  margin-top: 60px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 200%;
+}
+
+@media (min-width: 700px) {
+  h1 {
+    font-size: 300%;
+  }
+}
+
+@media (min-width: 500px) {
+  h1 {
+    font-size: 250%;
+  }
+}
+
+#form {
+  text-align: center;
+  padding: 40px 0 30px 0;
+}
+
+#email {
+  width: 250px;
+  border: 1px solid #696969;
+  text-indent: 4px;
+}
+
+.my-button {
+  font-weight: bold;
+  font-family: Serif;
+  font-size: 125%;
+  background-color: #696969;
+  color: hsl(0, 0%, 80%);
+}
+
+.my-button:hover {
+ color: hsl(0, 0%, 90%);
+ }
+
+#button-box {
+  margin-top: 10px;
+}
+
+.arrows {
+  text-align: right;
+}
+
+@media (max-width: 600px) {
+  .arrows {
+    display:none;
+  }
+}
+
+#how-it-works {
+  margin: 20px 0 40px 0;
+}
+
+#video-box {
+  display: flex;
+  justify-content: center;
+}
+
+.center-me {
+  text-align: center;
+}
+
+.product-box {
+  width: 250px;
+  height: 300px;
+  border: 1px solid;
+}
+
+.product-box:hover {
+  border: 2px solid;
+}
+
+#product-box1, #product-box3 {
+  margin: auto;  
+}
+
+#product-box2 {
+  margin: 25px auto 25px auto;  
+}
+
+@media (min-width: 768px) {
+  .product-box {
+    width: 210px;
+  }
+  #product-box1 {
+    float:right;
+  }
+  #product-box2 {
+    margin: auto;  
+  }  
+  #product-box3 {
+    float:left;
+  }  
+}
+
+@media (min-width: 992px) {
+  .product-box {
+    width: 280px;
+  }
+  #product-box1 {
+    float:right;
+  }
+  #product-box2 {
+    margin: auto;  
+  }  
+  #product-box3 {
+    float:left;
+  }    
+}
+
+.option-title {
+  font-weight: bold;
+  font-family: Serif;
+  font-size: 125%;  
+  background-color: hsl(0, 0%, 80%);
+  height: 70px;
+  line-height: 70px;
+  text-align: center; 
+}
+
+h2 {
+  padding-top: 10px;
+}
+
+.lists {
+  list-style: none;
+  margin-left: -40px;
+}
+
+#foo {
+  text-align: right;
+  padding: 30px 20px 0 0;
+}
