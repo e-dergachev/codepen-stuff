@@ -1,0 +1,1 @@
+It's a few minor projects that were originally created at codepen.io, the name of each project should be self-explanatory, the folder of each project has a readme file with a codepen link to the project.
