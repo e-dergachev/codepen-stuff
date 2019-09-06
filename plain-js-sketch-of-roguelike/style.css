@@ -1,0 +1,11 @@
+body {
+  background-color: black;
+  user-select: none;
+}
+
+.cell {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  text-align: center;
+}
