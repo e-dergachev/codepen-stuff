@@ -1,0 +1,19 @@
+{
+  "name": "file-server",
+  "version": "1.0.0",
+  "description": "A simple file server",
+  "main": "file-server.js",
+  "dependencies": {
+    "mime": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node file-server"
+  },
+  "keywords": [
+    "file",
+    "server"
+  ],
+  "author": "",
+  "license": "ISC"
+}

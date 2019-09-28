@@ -1,0 +1,1 @@
+A basic file server with a web interface to edit the files in the top directory, even its own source code. Most of the server code was taken from https://eloquentjavascript.net where the code is licensed under an MIT license. Start it with "npm start", the web interface is at http://localhost:8000/index.html, index.html isn't served by the sever by default.
