@@ -1,0 +1,1 @@
+A very simple grep-like node script that can check if files contain a given regular expression, should be launched like 'node grep ["regular expression"] [list of files or directories to search, separated by space]'
