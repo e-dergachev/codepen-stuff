@@ -1,0 +1,30 @@
+body {
+  margin: 8px 8px;
+}
+
+.rabbit {
+  width: 210px;
+  height: 40px;
+  background-color: lavender;
+  border: 1px solid;
+  line-height: 20px;
+  padding-left: 10px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  opacity: 0.8;
+  text-align: left;
+}
+
+#briar-patch {
+  width: 250px;
+  height: 120px;
+  border: 1px solid;
+  text-align: center;
+  margin: 100px auto;
+}
+
+#freed-rabbit {
+  margin: 20px auto;
+  display: none;
+}
