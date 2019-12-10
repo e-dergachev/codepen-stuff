@@ -1,0 +1,31 @@
+.cell {
+  width: 33px;
+  height: 33px;
+  border-top: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-box {
+  display: flex;
+  flex-direction: column;
+  width: 305px;
+  height: 375px;
+  margin: auto;
+  background-color: whitesmoke;
+  border: 1px solid;
+  user-select: none;
+}
+
+#control-box {
+  height: 75px;
+  width: 100%;
+}
+
+#field-box {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  flex: 1;
+}
