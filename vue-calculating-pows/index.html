@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Calculating Pows</title>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="app">
+  <button v-on:click = makePows>⬆</button>
+  <input v-model = "num">
+  <ul>
+    <pow
+      v-for = "(pow, index) in pows"
+      :key = index
+      :pow = pow
+    ></pow>
+  </ul>
+</div>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script><script  src="./script.js"></script>
+</body>
+</html>
