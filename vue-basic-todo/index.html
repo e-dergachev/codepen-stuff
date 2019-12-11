@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Basic Todo</title>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="app">
+  <ol>
+    <todo
+      v-for = "(item, index) in tasks"
+      :key = index
+      :todo = item
+      :index = index
+    ></todo>
+  </ol>
+  <input 
+    v-model = "task"
+    placeholder="Add something to do"
+  >
+  <button v-on:click = addItem>Add</button>
+</div>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script><script  src="./script.js"></script>
+</body>
+</html>
