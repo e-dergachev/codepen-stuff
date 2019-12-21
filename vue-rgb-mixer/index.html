@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>RGB Mixer</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html>
+   <head>
+    <title>RGB Mixer</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>RGB Mixer</h1>
+    <div id="app">
+      <div>
+        R: 
+        <input type="number" min="0" max="255" v-model="r" @input="backgroundHandler">
+        <input type="range" min="0" max="255" step="1" v-model="r" @input="backgroundHandler">
+      </div>
+      <div>
+        G:
+        <input type="number"min="0" max="255" v-model="g" @input="backgroundHandler">
+        <input type="range" min="0" max="255" step="1" v-model="g" @input="backgroundHandler">
+      </div>
+      <div>
+        B:
+        <input type="number" min="0" max="255" v-model="b" @input="backgroundHandler">
+        <input type="range" min="0" max="255" step="1" v-model="b" @input="backgroundHandler">
+      </div>
+    </div>
+  </body>
+</html>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
