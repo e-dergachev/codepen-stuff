@@ -1,26 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Minesweeper</title>
-  <link rel="stylesheet" href="./style.css">
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
 <div id="main-box">
   <div id="control-box"></div>
   <div id="field-box">
     <cell
       v-for="(item, index) in field"
-      v-bind:content="item"
-      v-bind:index="index"
-      v-bind:key="index"      
+      :content="item.content"
+      :index="index"
+      :hidden="item.hidden"
+      :marked="item.marked"
+      :key="index"
+      @click.right.native.prevent
+      @disclose-cell="discloseCell(index)"
+      @mark-cell="markCell(index)"
     ></cell>
   </div>
 </div>
-<!-- partial -->
-  <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script><script  src="./script.js"></script>
-
-</body>
-</html>
