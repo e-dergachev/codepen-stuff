@@ -1,5 +1,11 @@
-<div id="main-box">
-  <div id="control-box"></div>
+<div id="main-box" :class="size === 'small' ? 'small' : size === 'medium' ? 'medium' : 'big'">
+  <div id="control-box">
+    <select v-model="size" @change="changeField(size)">
+      <option value="small" selected>Easy</option>
+      <option value="medium">Intermediate</option>
+      <option value="big">Advanced</option>
+    </select>
+  </div>
   <div id="field-box">
     <cell
       v-for="(item, index) in field"
@@ -8,6 +14,7 @@
       :hidden="item.hidden"
       :marked="item.marked"
       :questioned="item.questioned"
+      :size="size"
       :key="index"
       @click.right.native.prevent
       @disclose-cell="discloseCell(index)"

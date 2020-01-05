@@ -9,47 +9,8 @@ const colors = {
     8: 'gray'
 };
 
-const mineIndexes = [];
-let mineAmount = 10;
-while (mineAmount !== 0) {
-    let roll = Math.floor((Math.random() * 81));
-    if (!mineIndexes.includes(roll)) {
-        mineAmount--;
-        mineIndexes.push(roll);
-    }
-}
-
-const field = [];
-let placeCounter = 0;
-for (let i = 0; i < 9; i++) {
-    let row = [];
-    for (let j = 0; j < 9; j++) {
-        row.push(mineIndexes.includes(placeCounter) ? '💣' : '');
-        placeCounter++;
-    }
-    field.push(row);
-}
-
-for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-        let neighbors = 0;
-        if (i - 1 >= 0 && j - 1 >= 0 && field[i - 1][j - 1] === "💣") neighbors++;
-        if (i + 1 < 9 && j - 1 >= 0 && field[i + 1][j - 1] === "💣") neighbors++;
-        if (i - 1 >= 0 && j + 1 < 9 && field[i - 1][j + 1] === "💣") neighbors++;
-        if (i - 1 >= 0 && field[i - 1][j] === "💣") neighbors++;
-        if (i + 1 < 9 && field[i + 1][j] === "💣") neighbors++;
-        if (j - 1 >= 0 && field[i][j - 1] === "💣") neighbors++;
-        if (j + 1 < 9 && field[i][j + 1] === "💣") neighbors++;
-        if (i + 1 < 9 && j + 1 < 9 && field[i + 1][j + 1] === "💣") neighbors++;
-        if (neighbors > 0 && field[i][j] !== '💣') field[i][j] = neighbors;
-    }
-}
-
-let temp = field.reduce((acc, val) => acc.concat(val), []);
-temp = temp.map(val => {return {content: val, hidden: true, marked: false, questioned: false}});
-
 Vue.component("cell", {
-  props: ["content", "index", "hidden", "marked", "questioned"],
+  props: ["content", "index", "hidden", "marked", "questioned", "size"],
   data: function() {
     return {val: ""};
   },
@@ -60,7 +21,8 @@ Vue.component("cell", {
     style() {
       const backgroundColor = this.hidden ? "silver" : "whitesmoke";
       const color = this.marked ? "red" : (this.questioned && this.hidden) ? "dimgrey" : ([1, 2, 3, 4, 5, 6, 7, 8].includes(this.content) ? colors[this.content] : 'black'); //the last black is for the mines
-      if (this.index > 0 && (this.index + 1) % 9 === 0) {
+      const limit = this.size === "small" ? 9 : this.size === "medium" ? 16 : 30;
+      if (this.index > 0 && (this.index + 1) % limit === 0) {
         return {color, backgroundColor};   
       }
       else {
@@ -77,37 +39,100 @@ Vue.component("cell", {
 });
 
 const app = new Vue({
-  el: "#field-box",
+  el: "#main-box",
   data: function() {
-        return {field: temp, isLost: false, isWon: false};
+        return {field: {}, isLost: false, isWon: false, size: "small"};
+  },
+  created() {
+    this.makeField(this.size);
   },
   beforeUpdate() {
-    let numHidden = 0;
-    for (let cell of this.field) {
-      if (cell.hidden) numHidden++;
-    }
-    if (numHidden === 10) {
-      this.isWon = true;
-      for (let cell of this.field) {
-        if (cell.hidden && !cell.marked) {
-          cell.marked = true;
-        }
-      }      
-    }
+    this.checkIfWon(this.size);
   },
   methods: {
+    changeField: function(size) {
+      this.isWon = false;
+      this.isLost = false;
+      this.makeField(size);
+    },
+    checkIfWon: function(size) {
+      const mineAmount = size === "small" ? 10 : size === "medium" ? 40 : 99;
+      let numHidden = 0;
+      for (let cell of this.field) {
+        if (cell.hidden) numHidden++;
+      }
+      if (numHidden === mineAmount) {
+        this.isWon = true;
+        for (let cell of this.field) {
+          if (cell.hidden && !cell.marked) {
+            cell.marked = true;
+          }
+        }      
+      }      
+    },
+    makeField: function(size) {
+      const mineIndexes = [];
+      const rndLimit = size === "small" ? 81 : size === "medium" ? 256 : 480;
+      let mineAmount = size === "small" ? 10 : size === "medium" ? 40 : 99;
+      while (mineAmount !== 0) {
+          let roll = Math.floor((Math.random() * rndLimit));
+          if (!mineIndexes.includes(roll)) {
+              mineAmount--;
+              mineIndexes.push(roll);
+          }
+      }
+
+      const field = [];
+      const iLimit = size === "small" ? 9 : 16;
+      const jLimit = size === "small" ? 9 : size === "medium" ? 16 : 30;
+      let placeCounter = 0;
+      for (let i = 0; i < iLimit; i++) {
+          let row = [];
+          for (let j = 0; j < jLimit; j++) {
+              row.push(mineIndexes.includes(placeCounter) ? '💣' : '');
+              placeCounter++;
+          }
+          field.push(row);
+      }
+
+      for (let i = 0; i < iLimit; i++) {
+          for (let j = 0; j < jLimit; j++) {
+              let neighbors = 0;
+              if (i - 1 >= 0 && j - 1 >= 0 && field[i - 1][j - 1] === "💣") neighbors++;
+              if (i + 1 < iLimit && j - 1 >= 0 && field[i + 1][j - 1] === "💣") neighbors++;
+              if (i - 1 >= 0 && j + 1 < jLimit && field[i - 1][j + 1] === "💣") neighbors++;
+              if (i - 1 >= 0 && field[i - 1][j] === "💣") neighbors++;
+              if (i + 1 < iLimit && field[i + 1][j] === "💣") neighbors++;
+              if (j - 1 >= 0 && field[i][j - 1] === "💣") neighbors++;
+              if (j + 1 < jLimit && field[i][j + 1] === "💣") neighbors++;
+              if (i + 1 < iLimit && j + 1 < jLimit && field[i + 1][j + 1] === "💣") neighbors++;
+              if (neighbors > 0 && field[i][j] !== '💣') field[i][j] = neighbors;
+          }
+      }
+
+      let temp = field.reduce((acc, val) => acc.concat(val), []);
+      this.field = temp.map(val => {return {content: val, hidden: true, marked: false, questioned: false}});      
+    },
     calculateVicinity: function(i) {
       let vicinity;
-      if ([0, 9, 18, 27, 36, 45, 54, 63, 72].includes(i)) {
-        vicinity = [i + 1, i - 8, i - 9, i + 9, i + 10];  
+      const leftIndexes = this.size === "small" ? [0, 9, 18, 27, 36, 45, 54, 63, 72] : this.size === "medium" ? 
+            [0, 16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240] : 
+            [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360, 390, 420, 450];
+      const rightIndexes = this.size === "small" ? [8, 17, 26, 35, 44, 53, 62, 71, 80] : this.size === "medium" ?
+            [15, 31, 47, 63, 79, 95, 111, 127, 143, 159, 175, 191, 207, 223, 239, 255] : 
+            [29, 59, 89, 119, 149, 179, 209, 239, 269, 299, 329, 359, 389, 419, 449, 479];
+      const limit = this.size === "small" ? 9 : this.size === "medium" ? 16 : 30;
+      const filterLimit = this.size === "small" ? 80 : this.size === "medium" ? 255 : 479;
+      if (leftIndexes.includes(i)) {
+        vicinity = [i + 1, i - limit + 1, i - limit, i + limit, i + limit + 1];  
       }
-      else if ([8, 17, 26, 35, 44, 53, 62, 71, 80].includes(i)) {
-        vicinity = [i - 1, i - 9, i - 10, i + 8, i + 9];  
+      else if (rightIndexes.includes(i)) {
+        vicinity = [i - 1, i - limit, i - limit - 1, i + limit - 1, i + limit];  
       }
       else {
-        vicinity = [i - 1, i + 1, i - 8, i - 9, i - 10, i + 8, i + 9, i + 10];  
+        vicinity = [i - 1, i + 1, i - limit + 1, i - limit, i - limit - 1, i + limit - 1, i + limit, i + limit + 1];  
       }
-      vicinity = vicinity.filter(vIndex => vIndex >= 0 && vIndex <= 80);
+      vicinity = vicinity.filter(vIndex => vIndex >= 0 && vIndex <= filterLimit);
       return vicinity;   
     },
     riskyBunch: function(i) {
@@ -136,7 +161,7 @@ const app = new Vue({
               let temp = [];
               vicinity.forEach(vIndex => temp.push(this.calculateVicinity(vIndex)));
               vicinity = temp.reduce((acc, val) => acc.concat(val), []).filter(vIndex => this.field[vIndex].hidden);
-              vicinity = [...new Set(vicinity)];
+              vicinity = [...new Set(vicinity)]; //remove duplicates
             }
           }
           else if (this.field[index].content === "💣") {

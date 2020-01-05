@@ -1,17 +1,30 @@
 .cell {
-  width: 33px;
-  height: 33px;
+  width: 27px;
+  height: 27px;
   border-top: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.small {
+  width: 251px; /*cell * 9 + 8*/
+  height: 321px; /*cell * 9 + 3 + 75*/
+}
+
+.medium {
+  width: 447px; /*cell * 16 + 15*/
+  height: 510px; /*cell * 16 + 3 + 75*/  
+}
+
+.big {
+  width: 839px; /*cell * 30 + 29*/
+  height: 510px; /*cell * 16 + 3 + 75*/   
+}
+
 #main-box {
   display: flex;
   flex-direction: column;
-  width: 305px;
-  height: 375px;
   margin: auto;
   background-color: whitesmoke;
   border: 1px solid;
