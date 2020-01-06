@@ -1,3 +1,20 @@
+button {
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 2px 5px 2px 5px;
+  background-color: whitesmoke;
+}
+
+button:active {
+  border: 2px solid;
+  margin-left: -1px;
+  margin-right: -1px;
+}
+
+button:focus, select:focus {
+  outline: none;
+}
+
 .cell {
   width: 27px;
   height: 27px;
@@ -9,17 +26,33 @@
 
 .small {
   width: 251px; /*cell * 9 + 8*/
-  height: 321px; /*cell * 9 + 3 + 75*/
+  height: 337px; /*cell * 9 + 3 + 91*/
 }
 
 .medium {
   width: 447px; /*cell * 16 + 15*/
-  height: 510px; /*cell * 16 + 3 + 75*/  
+  height: 533px; /*cell * 16 + 10 + 91*/  
 }
 
 .big {
   width: 839px; /*cell * 30 + 29*/
-  height: 510px; /*cell * 16 + 3 + 75*/   
+  height: 533px; /*cell * 16 + 10 + 91*/   
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.counter {
+  border-bottom: 1px solid;
+  padding-bottom: 2px;
+  width: 50px;
+}
+
+.difficulty-small {
+  width: 70px;
 }
 
 #main-box {
@@ -32,8 +65,10 @@
 }
 
 #control-box {
-  height: 75px;
+  height: 91px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 #field-box {
@@ -43,7 +78,27 @@
   flex: 1;
 }
 
-#status {
+#restart {
   cursor: pointer;
+  text-align: center;
+}
+
+#status {
   font-size: 25px;
+}
+
+#difficulty {
+  border: 1px solid;
+}
+
+#spacer {
+  width: 45px;
+}
+
+#upper-row {
+  padding-top: 5px;
+}
+
+#bottom-row {
+  flex: 1;
 }

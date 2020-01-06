@@ -10,13 +10,23 @@
 <!-- partial:index.partial.html -->
 <div id="main-box" :class="size === 'small' ? 'small' : size === 'medium' ? 'medium' : 'big'">
   <div id="control-box">
-    <div>💣 {{mines}} </div>
-    <span id="status" :class="isLost ? 'far fa-frown' : isWon ? 'far fa-grin-tongue' : clicked ? 'far fa-surprise' : 'far fa-smile'" @click="changeField(size)"></span>
-    <select v-model="size" @change="changeField(size)">
-      <option value="small" selected>Easy</option>
-      <option value="medium">Intermediate</option>
-      <option value="big">Advanced</option>
-    </select>
+    <div class="row" id="upper-row">
+      <div class="counter">💣 {{mines}} </div>
+      <div id="restart" @click="changeField(size)">
+        <span id="status" :class="isLost ? 'far fa-frown' : isWon ? 'far fa-grin-tongue' : clicked ? 'far fa-surprise' : 'far fa-smile'"></span><br>
+        Restart
+      </div>
+      <div class="counter">🕔 999</div>
+    </div>
+    <div class="row" id="bottom-row">
+      <select id="difficulty" :class="size === 'small' ? 'difficulty-small' : ''" v-model="size" @change="changeField(size)">
+        <option value="small" selected>Easy</option>
+        <option value="medium">Intermediate</option>
+        <option value="big">Advanced</option>
+      </select>
+      <div id="spacer"></div>
+      <button>Records</button>
+    </div>
   </div>
   <div id="field-box">
     <cell
