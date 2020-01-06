@@ -10,16 +10,16 @@ const colors = {
 };
 
 Vue.component("cell", {
-  props: ["content", "index", "hidden", "marked", "questioned", "size"],
+  props: ["content", "index", "hidden", "marked", "questioned", "size", "lost"],
   data: function() {
     return {val: ""};
   },
   beforeUpdate() {
-    this.val = this.marked ? "🚩" : (this.questioned && this.hidden) ? "❓" : this.hidden ? "" : this.content;
+    this.val = (this.marked && this.content !== "💣" && this.lost) ? "╳" : this.marked ? "🚩" : (this.lost && this.content === "💣") ? "💣" : (this.questioned && this.hidden) ? "❓" : this.hidden ? "" : this.content;
   },
   computed: {
     style() {
-      const backgroundColor = this.hidden ? "silver" : "whitesmoke";
+      const backgroundColor = (this.lost && this.hidden) ? "hsl(0, 100%, 85%)" : (this.lost && !this.hidden) ? "hsl(0, 100%, 95%)" : this.hidden ? "silver" : "whitesmoke";
       const color = this.marked ? "red" : (this.questioned && this.hidden) ? "dimgrey" : ([1, 2, 3, 4, 5, 6, 7, 8].includes(this.content) ? colors[this.content] : 'black'); //the last black is for the mines
       const limit = this.size === "small" ? 9 : this.size === "medium" ? 16 : 30;
       if (this.index > 0 && (this.index + 1) % limit === 0) {
@@ -41,7 +41,7 @@ Vue.component("cell", {
 const app = new Vue({
   el: "#main-box",
   data: function() {
-        return {field: {}, isLost: false, isWon: false, size: "small"};
+        return {field: {}, isLost: false, isWon: false, size: "small", mines: 10, clicked: false};
   },
   created() {
     this.makeField(this.size);
@@ -50,7 +50,7 @@ const app = new Vue({
     this.checkIfWon(this.size);
   },
   methods: {
-    changeField: function(size) {
+    changeField: function(size = this.size) {
       this.isWon = false;
       this.isLost = false;
       this.makeField(size);
@@ -74,6 +74,7 @@ const app = new Vue({
       const mineIndexes = [];
       const rndLimit = size === "small" ? 81 : size === "medium" ? 256 : 480;
       let mineAmount = size === "small" ? 10 : size === "medium" ? 40 : 99;
+      this.mines = mineAmount;
       while (mineAmount !== 0) {
           let roll = Math.floor((Math.random() * rndLimit));
           if (!mineIndexes.includes(roll)) {
@@ -152,6 +153,8 @@ const app = new Vue({
       if (this.isLost || this.isWon) return;
       if (this.field[index].hidden) {
         if (!this.field[index].marked) {
+          this.clicked = true; //to briefly change the face emoticon
+          setTimeout(() => this.clicked = false, 200);
           this.field[index].hidden = false;
           if (this.field[index].content === "") {
             let vicinity = this.calculateVicinity(index);
@@ -166,6 +169,7 @@ const app = new Vue({
           }
           else if (this.field[index].content === "💣") {
             this.isLost = true;
+            this.$forceUpdate(); //to change the field colors and show all the mines
           }
         }
       }
@@ -176,6 +180,7 @@ const app = new Vue({
     markCell: function(index) {
       if (this.isLost || this.isWon) return;
       if (this.field[index].hidden) {
+        this.mines = (!this.field[index].marked && !this.field[index].questioned) ? this.mines - 1 : this.field[index].marked ? this.mines + 1 : this.mines;
         this.field[index].marked = (!this.field[index].marked && !this.field[index].questioned) ? true : false;
         this.field[index].questioned = (this.field[index].marked || this.field[index].questioned) ? false : true;
       }

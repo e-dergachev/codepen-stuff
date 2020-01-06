@@ -42,3 +42,8 @@
   width: 100%;
   flex: 1;
 }
+
+#status {
+  cursor: pointer;
+  font-size: 25px;
+}

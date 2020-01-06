@@ -1,5 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Minesweeper</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
 <div id="main-box" :class="size === 'small' ? 'small' : size === 'medium' ? 'medium' : 'big'">
   <div id="control-box">
+    <div>💣 {{mines}} </div>
+    <span id="status" :class="isLost ? 'far fa-frown' : isWon ? 'far fa-grin-tongue' : clicked ? 'far fa-surprise' : 'far fa-smile'" @click="changeField(size)"></span>
     <select v-model="size" @change="changeField(size)">
       <option value="small" selected>Easy</option>
       <option value="medium">Intermediate</option>
@@ -15,6 +27,7 @@
       :marked="item.marked"
       :questioned="item.questioned"
       :size="size"
+      :lost="isLost"
       :key="index"
       @click.right.native.prevent
       @disclose-cell="discloseCell(index)"
@@ -22,3 +35,9 @@
     ></cell>
   </div>
 </div>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+<script src='https://kit.fontawesome.com/50e1ce8058.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
