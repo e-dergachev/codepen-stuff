@@ -16,7 +16,7 @@
         <span id="status" :class="isLost ? 'far fa-frown' : isWon ? 'far fa-grin-tongue' : clicked ? 'far fa-surprise' : 'far fa-smile'"></span><br>
         Restart
       </div>
-      <div class="counter">🕔 999</div>
+      <div class="counter">🕔 {{time}} </div>
     </div>
     <div class="row" id="bottom-row">
       <select id="difficulty" :class="size === 'small' ? 'difficulty-small' : ''" v-model="size" @change="changeField(size)">
@@ -25,7 +25,7 @@
         <option value="big">Advanced</option>
       </select>
       <div id="spacer"></div>
-      <button>Records</button>
+      <button>Records & Tips</button>
     </div>
   </div>
   <div id="field-box">

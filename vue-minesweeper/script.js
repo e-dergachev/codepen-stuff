@@ -41,7 +41,7 @@ template: `<div
 const app = new Vue({
 el: "#main-box",
 data: function() {
-      return {field: {}, isLost: false, isWon: false, size: "small", mines: 10, clicked: false};
+      return {field: {}, isLost: false, isWon: false, size: "small", mines: 10, clicked: false, time: 0, timeStop: true, interval: undefined};
 },
 created() {
   this.makeField(this.size);
@@ -50,7 +50,25 @@ beforeUpdate() {
   this.checkIfWon(this.size);
 },
 methods: {
+  timer: function() {
+    this.interval = setInterval(() => {
+        if (!document.hidden) { //to stop the timer when the tab is hidden
+          this.time++;   
+        }
+        if (/*this.timeStop ||*/ this.time === 999) {
+          /*if (this.time !== 999) { //to awoid switching the timer after the game has ended
+            this.time--;
+          }*/
+          clearInterval(this.interval);
+        }
+      }, 1000);
+  },
   changeField: function(size = this.size) {
+    this.time = 0;
+    this.timeStop = true;
+    if (!this.isWon || !this.isLost) {
+      clearInterval(this.interval);
+    }
     this.isWon = false;
     this.isLost = false;
     this.makeField(size);
@@ -63,6 +81,9 @@ methods: {
     }
     if (numHidden === mineAmount) {
       this.isWon = true;
+      this.mines = 0;
+      this.timeStop = true;
+      clearInterval(this.interval);
       for (let cell of this.field) {
         if (cell.hidden && !cell.marked) {
           cell.marked = true;
@@ -151,6 +172,10 @@ methods: {
   },
   discloseCell: function(index, hiddenOnly) {
     if (this.isLost || this.isWon) return;
+    if (this.time === 0) { //start the timer
+        this.timeStop = false;
+        this.timer();
+    }
     if (this.field[index].hidden) {
       if (!this.field[index].marked) {
         this.clicked = true; //to briefly change the face emoticon
@@ -169,6 +194,8 @@ methods: {
         }
         else if (this.field[index].content === "💣") {
           this.isLost = true;
+          this.timeStop = true;
+          clearInterval(this.interval);
           this.$forceUpdate(); //to change the field colors and show all the mines
         }
       }
