@@ -7,8 +7,6 @@ button {
 
 button:active {
   border: 2px solid;
-  margin-left: -1px;
-  margin-right: -1px;
 }
 
 button:focus, select:focus {
@@ -55,6 +53,15 @@ button:focus, select:focus {
   width: 70px;
 }
 
+.hide {
+  display: none;
+}
+
+.text-space {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
 #main-box {
   display: flex;
   flex-direction: column;
@@ -76,6 +83,7 @@ button:focus, select:focus {
   flex-wrap: wrap;
   width: 100%;
   flex: 1;
+  position: relative;
 }
 
 #restart {
@@ -101,4 +109,40 @@ button:focus, select:focus {
 
 #bottom-row {
   flex: 1;
+}
+
+#records {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: absolute;
+  background: whitesmoke;
+}
+
+#records-text {
+  overflow-y: auto;
+  padding: 0 5px 0 5px;
+  height: 100%;
+}
+
+#show-records-button {
+  width: 105px;
+}
+
+#clear-records-button {
+  width: 100px;
+}
+
+#clear-records-button:active {
+  margin: -1px 0 -1px 0;
+}
+
+#records-themselves {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#records-title {
+  margin-top: 10px;
 }

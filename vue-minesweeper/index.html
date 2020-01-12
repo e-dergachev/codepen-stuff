@@ -25,10 +25,25 @@
         <option value="big">Advanced</option>
       </select>
       <div id="spacer"></div>
-      <button>Records & Tips</button>
+      <button id="show-records-button" @click="changeRecordsVisibility()">{{buttonText}}</button>
     </div>
   </div>
   <div id="field-box">
+    <div id="records" :class="showRecords ? '' : 'hide'">
+      <div id ="records-text">
+        <div id="records-title">Records:</div><br>
+        <div id="records-themselves">
+          Easy: {{recordEasy}} <br><br>
+          Intermediate: {{recordIntermediate}} <br><br>
+          Advanced: {{recordAdvanced}} <br><br><br>
+          <button id ="clear-records-button" @click="clearRecords()">Clear Records</button><br><br>
+        </div>
+        Tips: <br><br>
+        <div class="text-space">
+          The cells can be empty, contain mines or be numbered, with the number meaning how many mines are placed directly around that cell. They are initially hidden, your goal is to disclose all the empty and numbered cells without disclosing any of the mines. Click the left mouse button to disclose a hidden cell, the right mouse button to mark or unmark a hidden cell as containing a mine, or any mouse button to disclose all the hidden cells around a numbered cell, assuming you have marked the corresponding amount of mines directly around it.
+        </div>        
+      </div>
+    </div>
     <cell
       v-for="(item, index) in field"
       :content="item.content"

@@ -9,6 +9,31 @@ const colors = {
   8: 'gray'
 };
 
+function storageAvailable(type) { //a snippet taken from MDN Web Docs
+  let storage;
+  try {
+      storage = window[type];
+      const x = '__storage_test__';
+      storage.setItem(x, x);
+      storage.removeItem(x);
+      return true;
+  }
+  catch(e) {
+      return e instanceof DOMException && (
+          // everything except Firefox
+          e.code === 22 ||
+          // Firefox
+          e.code === 1014 ||
+          // test name field too, because code might not be present
+          // everything except Firefox
+          e.name === 'QuotaExceededError' ||
+          // Firefox
+          e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+          // acknowledge QuotaExceededError only if there's something already stored
+          (storage && storage.length !== 0);
+  }
+}
+
 Vue.component("cell", {
 props: ["content", "index", "hidden", "marked", "questioned", "size", "lost"],
 data: function() {
@@ -41,49 +66,81 @@ template: `<div
 const app = new Vue({
 el: "#main-box",
 data: function() {
-      return {field: {}, isLost: false, isWon: false, size: "small", mines: 10, clicked: false, time: 0, timeStop: true, interval: undefined};
+      return {field: {}, isLost: false, isWon: false, size: "small", mines: 10, clicked: false, time: 0, timeStop: true, showRecords: false, buttonText: "Records & Tips", recordEasy: "---", recordIntermediate: "---", recordAdvanced: "---"};
 },
 created() {
   this.makeField(this.size);
+  this.timer();
 },
 beforeUpdate() {
   this.checkIfWon(this.size);
 },
 methods: {
+  renewRecords: function() {
+    if (storageAvailable('localStorage')) {
+      this.recordEasy = localStorage.getItem('recordEasy') ? localStorage.getItem('recordEasy') : '---';
+      this.recordIntermediate = localStorage.getItem('recordIntermediate') ? localStorage.getItem('recordIntermediate') : '---';
+      this.recordAdvanced = localStorage.getItem('recordAdvanced') ? localStorage.getItem('recordAdvanced') : '---';
+    }
+  },
+  changeRecordsVisibility: function() {
+    this.showRecords = this.showRecords ? false : true;
+    this.timeStop = (this.timeStop && this.time !== 0 && !this.isWon && !this.isLost) ? false : true;
+    this.buttonText = this.showRecords ? "Back to Game" : "Records & Tips";
+  },
+  clearRecords: function() {
+    if (storageAvailable('localStorage')) {
+      localStorage.removeItem('recordEasy');
+      localStorage.removeItem('recordIntermediate');
+      localStorage.removeItem('recordAdvanced');
+    }
+    this.recordEasy = "---";
+    this.recordIntermediate = "---";
+    this.recordAdvanced = "---";
+  },
   timer: function() {
     this.interval = setInterval(() => {
-        if (!document.hidden) { //to stop the timer when the tab is hidden
+        if (!document.hidden && !this.timeStop) { //to stop the timer when the tab is hidden
           this.time++;   
         }
-        if (/*this.timeStop ||*/ this.time === 999) {
-          /*if (this.time !== 999) { //to awoid switching the timer after the game has ended
-            this.time--;
-          }*/
-          clearInterval(this.interval);
+        if (this.time === 999) {
+          this.timeStop = true;
         }
       }, 1000);
   },
   changeField: function(size = this.size) {
     this.time = 0;
     this.timeStop = true;
-    if (!this.isWon || !this.isLost) {
-      clearInterval(this.interval);
-    }
     this.isWon = false;
     this.isLost = false;
+    this.showRecords = false;
+    this.buttonText = "Records & Tips";
     this.makeField(size);
   },
   checkIfWon: function(size) {
+    if (this.isWon) return;
     const mineAmount = size === "small" ? 10 : size === "medium" ? 40 : 99;
     let numHidden = 0;
     for (let cell of this.field) {
       if (cell.hidden) numHidden++;
     }
     if (numHidden === mineAmount) {
+      if (storageAvailable('localStorage')) {
+        const request = size === "small" ? "recordEasy" : size === "medium" ? "recordIntermediate" : "recordAdvanced";
+        const currentRecord = localStorage.getItem(request);
+        if (currentRecord) {
+          if (!isNaN(currentRecord) && Number(currentRecord) > this.time) {
+            localStorage.setItem(request, this.time);
+          }
+        }
+        else {
+          localStorage.setItem(request, this.time);
+        }
+      }
+      this.renewRecords();
       this.isWon = true;
       this.mines = 0;
       this.timeStop = true;
-      clearInterval(this.interval);
       for (let cell of this.field) {
         if (cell.hidden && !cell.marked) {
           cell.marked = true;
@@ -92,6 +149,7 @@ methods: {
     }      
   },
   makeField: function(size) {
+    this.renewRecords();
     const mineIndexes = [];
     const rndLimit = size === "small" ? 81 : size === "medium" ? 256 : 480;
     let mineAmount = size === "small" ? 10 : size === "medium" ? 40 : 99;
@@ -174,7 +232,6 @@ methods: {
     if (this.isLost || this.isWon) return;
     if (this.time === 0) { //start the timer
         this.timeStop = false;
-        this.timer();
     }
     if (this.field[index].hidden) {
       if (!this.field[index].marked) {
@@ -195,7 +252,6 @@ methods: {
         else if (this.field[index].content === "💣") {
           this.isLost = true;
           this.timeStop = true;
-          clearInterval(this.interval);
           this.$forceUpdate(); //to change the field colors and show all the mines
         }
       }
